@@ -1,6 +1,6 @@
 # RafaFlix
 
-<p style="text-align: center; font-size: 24px">👨🏻‍💻 Em desenvolvimento</p>
+👨🏻‍💻 Em desenvolvimento
 
 ## Utilizando:
   - [**React**](https://pt-br.reactjs.org/), [**TypeScript**](https://www.typescriptlang.org/) e [**NodeJS**](https://nodejs.org/en/).
