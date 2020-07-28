@@ -1,14 +1,22 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
 import { Container, Logo } from './styles';
 
 import logo from '../../assets/logo.png';
 import Button from '../Button';
 
-const Header: React.FC = () => (
+interface HeaderProps {
+  buttonLinkTo: string;
+  buttonLinkText: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ buttonLinkTo, buttonLinkText }) => (
   <Container>
-    <Logo src={logo} alt="RafaFlix" />
-    <Button>Criar Novo</Button>
+    <Link to="/">
+      <Logo src={logo} alt="RafaFlix" />
+    </Link>
+    <Button to={buttonLinkTo}>{buttonLinkText}</Button>
   </Container>
 );
 export default Header;

@@ -1,11 +1,10 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React from 'react';
+import { LinkProps } from 'react-router-dom';
 
 import { Container } from './styles';
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
-
-const Button: React.FC<ButtonProps> = ({ children, ...rest }: ButtonProps) => (
-  <Container type="button" {...rest}>
+const Button: React.FC<LinkProps> = ({ children, to, ...rest }) => (
+  <Container to={to} {...rest}>
     {children}
   </Container>
 );

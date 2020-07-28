@@ -2,17 +2,12 @@ import React from 'react';
 
 import initialData from '../../data/initial_data.json';
 
-import { Container } from './styles';
-
-import Header from '../../components/Header';
+import Template from '../Template';
 import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
-import Footer from '../../components/Footer';
 
 const Home: React.FC = () => (
-  <Container>
-    <Header />
-
+  <Template buttonHeaderLink="/video/registration" buttonLinkText="Criar novo">
     <BannerMain
       videoTitle={initialData.categories[0].videos[0].title}
       url={initialData.categories[0].videos[0].url}
@@ -25,9 +20,7 @@ const Home: React.FC = () => (
         category={category}
       />
     ))}
-
-    <Footer />
-  </Container>
+  </Template>
 );
 
 export default Home;

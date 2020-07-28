@@ -1,14 +1,12 @@
 import React from 'react';
-import {
-  VideoCardGroupContainer,
-  VideoCardList,
-  Title,
-  ExtraLink,
-} from './styles';
+import {} from 'react-slick';
+
+import { VideoCardGroupContainer, Title, ExtraLink } from './styles';
 
 import VideoCard from './components/VideoCard';
+import Slider from '../Slider';
 
-interface VideoCardGroupProps {
+interface CarouselProps {
   ignoreFirstVideo: boolean;
   category: {
     title: string;
@@ -24,10 +22,7 @@ interface VideoCardGroupProps {
   };
 }
 
-const VideoCardGroup: React.FC<VideoCardGroupProps> = ({
-  ignoreFirstVideo,
-  category,
-}) => {
+const Carousel: React.FC<CarouselProps> = ({ ignoreFirstVideo, category }) => {
   const categoryTitle = category.title;
   const categoryColor = category.color;
   const categoryExtraLink = category.linkExtra;
@@ -40,14 +35,14 @@ const VideoCardGroup: React.FC<VideoCardGroupProps> = ({
           <Title style={{ backgroundColor: categoryColor || 'red' }}>
             {categoryTitle}
           </Title>
-          {categoryExtraLink && (
+          {/* {categoryExtraLink && (
             <ExtraLink href={categoryExtraLink.url} target="_blank">
               {categoryExtraLink.text}
             </ExtraLink>
-          )}
+          )} */}
         </>
       )}
-      <VideoCardList>
+      <Slider>
         {videos.map((video, index) => {
           if (ignoreFirstVideo && index === 0) {
             return null;
@@ -63,9 +58,9 @@ const VideoCardGroup: React.FC<VideoCardGroupProps> = ({
             </li>
           );
         })}
-      </VideoCardList>
+      </Slider>
     </VideoCardGroupContainer>
   );
 };
 
-export default VideoCardGroup;
+export default Carousel;
