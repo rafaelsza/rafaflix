@@ -6,17 +6,15 @@ import Footer from '../../components/Footer';
 import { Container, Children } from './styles';
 
 interface TemplateProps {
-  buttonHeaderLink: string;
-  buttonLinkText: string;
+  button: {
+    text: string;
+    onClick(): void;
+  };
 }
 
-const Template: React.FC<TemplateProps> = ({
-  children,
-  buttonHeaderLink,
-  buttonLinkText,
-}) => (
+const Template: React.FC<TemplateProps> = ({ children, button }) => (
   <Container>
-    <Header buttonLinkTo={buttonHeaderLink} buttonLinkText={buttonLinkText} />
+    <Header button={button} />
     <Children>{children}</Children>
     <Footer />
   </Container>

@@ -29,9 +29,14 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "operator-linebreak": "off",
+    "implicit-arrow-linebreak": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "object-curly-newline": "off",
     "arrow-parens": "off",
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
+    "no-unused-expressions": "off",
     "no-unused-vars": "warn",
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",

@@ -7,16 +7,18 @@ import logo from '../../assets/logo.png';
 import Button from '../Button';
 
 interface HeaderProps {
-  buttonLinkTo: string;
-  buttonLinkText: string;
+  button: {
+    text: string;
+    onClick(): void;
+  };
 }
 
-const Header: React.FC<HeaderProps> = ({ buttonLinkTo, buttonLinkText }) => (
+const Header: React.FC<HeaderProps> = ({ button }) => (
   <Container>
     <Link to="/">
       <Logo src={logo} alt="RafaFlix" />
     </Link>
-    <Button to={buttonLinkTo}>{buttonLinkText}</Button>
+    <Button onClick={button.onClick}>{button.text}</Button>
   </Container>
 );
 export default Header;
