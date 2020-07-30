@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import initialData from '../../data/initial_data.json';
+import data from '../../data/data.json';
 
 import Template from '../Template';
 import BannerMain from '../../components/BannerMain';
@@ -17,13 +17,13 @@ const Home: React.FC = () => {
       }}
     >
       <BannerMain
-        videoTitle={initialData.categories[0].videos[0].title}
-        url={initialData.categories[0].videos[0].url}
+        videoTitle={data.categories[0].videos[0].title}
+        url={data.categories[0].videos[0].url}
       />
 
-      {initialData.categories.map(category => (
+      {data.categories.map(category => (
         <Carousel
-          key={initialData.categories.indexOf(category)}
+          key={data.categories.indexOf(category)}
           ignoreFirstVideo={false}
           category={category}
         />

@@ -1,13 +1,9 @@
 {
   "categories": [
     {
-      "title": "Música",
-      "link": "https://www.alura.com.br/formacao-front-end",
+      "name": "Música",
+      "description": "Shows ao vivo",
       "color": "#8163d4",
-      "linkExtra": {
-        "text": "Contar Pra Quê - DVD Novas Histórias - Ao vivo em Recife",
-        "url": "https://www.youtube.com/watch?v=IYn2BU4rbsQ"
-      },
       "videos": [
         {
           "title": "Henrique e Juliano",
@@ -20,13 +16,9 @@
       ]
     },
     {
-      "title": "Front End",
-      "link": "https://www.alura.com.br/formacao-front-end",
+      "name": "Front End",
+      "description": "Vídeos sobre dev front-end",
       "color": "#6BD1FF",
-      "link_extra": {
-        "text": "Formação de Front End na Alura",
-        "url": "https://www.alura.com.br/cursos-online-front-end"
-      },
       "videos": [
         {
           "title": "O que faz uma desenvolvedora front-end? #HipstersPontoTube",
@@ -63,12 +55,9 @@
       ]
     },
     {
-      "title": "Back End",
+      "name": "Back End",
+      "description": "Vídeos sobre dev back-end",
       "color": "#00C86F",
-      "linkExtra": {
-        "text": "Cursos de Back End na Alura",
-        "url": "https://www.alura.com.br/cursos-online-programacao"
-      },
       "videos": [
         {
           "title": "PERCURSO em NÍVEL em ÁRVORE BINÁRIA | Estruturas de Dados #14",
@@ -93,12 +82,9 @@
       ]
     },
     {
-      "title": "Data Science e Inteligência Artificial",
+      "name": "Data Science e Inteligência Artificial",
+      "description": "Vídeos sobre DS e IA",
       "color": "#9cd33b",
-      "linkExtra": {
-        "text": "Cursos de Data Science na Alura",
-        "url": "https://www.alura.com.br/formacao-data-science"
-      },
       "videos": [
         {
           "title": "Teste de Turing",
@@ -119,7 +105,8 @@
       ]
     },
     {
-      "title": "Filmes",
+      "name": "Filmes",
+      "description": "",
       "color": "orange",
       "videos": [
         {
@@ -141,12 +128,9 @@
       ]
     },
     {
-      "title": "Games",
+      "name": "Games",
+      "description": "",
       "color": "red",
-      "linkExtra": {
-        "text": "Formação de Jogos na Alura",
-        "url": "https://www.alura.com.br/formacao-jogos-unity"
-      },
       "videos": [
         {
           "title": "Final Fantasy 7",
@@ -171,12 +155,9 @@
       ]
     },
     {
-      "title": "Aprendendo a aprender tecnologia",
+      "name": "Aprendendo a aprender tecnologia",
+      "description": "",
       "color": "#6b5be2",
-      "linkExtra": {
-        "text": "Curso sobre aprendizado na Alura",
-        "url": "https://alura.com.br/curso-online-aprender-a-aprender-tecnicas-para-seu-autodesenvolvimento"
-      },
       "videos": [
         {
           "title": "Como estudar melhor?",

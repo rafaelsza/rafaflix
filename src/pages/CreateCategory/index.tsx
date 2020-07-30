@@ -24,7 +24,7 @@ const CreateCategory: React.FC = () => {
   const navigation = useHistory();
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback(async (data: FormProps) => {
+  const handleSubmit = useCallback(async (formData: FormProps) => {
     try {
       formRef.current?.setErrors({});
 
@@ -34,12 +34,12 @@ const CreateCategory: React.FC = () => {
         ),
       });
 
-      await schema.validate(data, {
+      await schema.validate(formData, {
         abortEarly: false,
       });
 
       alert(
-        `Name: ${data.name} | Description: ${data.description} | Color: ${data.color}`,
+        `Name: ${formData.name} | Description: ${formData.description} | Color: ${formData.color}`,
       );
     } catch (error) {
       if (error instanceof Yup.ValidationError) {

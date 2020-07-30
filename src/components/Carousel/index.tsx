@@ -1,7 +1,6 @@
 import React from 'react';
-import {} from 'react-slick';
 
-import { VideoCardGroupContainer, Title, ExtraLink } from './styles';
+import { VideoCardGroupContainer, Title } from './styles';
 
 import VideoCard from './components/VideoCard';
 import Slider from '../Slider';
@@ -9,12 +8,9 @@ import Slider from '../Slider';
 interface CarouselProps {
   ignoreFirstVideo: boolean;
   category: {
-    title: string;
+    name: string;
+    description: string;
     color: string;
-    linkExtra?: {
-      text: string;
-      url: string;
-    };
     videos: Array<{
       title: string;
       url: string;
@@ -22,45 +18,34 @@ interface CarouselProps {
   };
 }
 
-const Carousel: React.FC<CarouselProps> = ({ ignoreFirstVideo, category }) => {
-  const categoryTitle = category.title;
-  const categoryColor = category.color;
-  const categoryExtraLink = category.linkExtra;
-  const { videos } = category;
+const Carousel: React.FC<CarouselProps> = ({ ignoreFirstVideo, category }) => (
+  <VideoCardGroupContainer>
+    {category.name && (
+      <>
+        <Title style={{ backgroundColor: category.color || 'red' }}>
+          {category.name}
+        </Title>
+        {/* {category.description} */}
+      </>
+    )}
+    <Slider>
+      {category.videos.map((video, index) => {
+        if (ignoreFirstVideo && index === 0) {
+          return null;
+        }
 
-  return (
-    <VideoCardGroupContainer>
-      {categoryTitle && (
-        <>
-          <Title style={{ backgroundColor: categoryColor || 'red' }}>
-            {categoryTitle}
-          </Title>
-          {/* {categoryExtraLink && (
-            <ExtraLink href={categoryExtraLink.url} target="_blank">
-              {categoryExtraLink.text}
-            </ExtraLink>
-          )} */}
-        </>
-      )}
-      <Slider>
-        {videos.map((video, index) => {
-          if (ignoreFirstVideo && index === 0) {
-            return null;
-          }
-
-          return (
-            <li key={video.title}>
-              <VideoCard
-                videoTitle={video.title}
-                videoURL={video.url}
-                categoryColor={categoryColor}
-              />
-            </li>
-          );
-        })}
-      </Slider>
-    </VideoCardGroupContainer>
-  );
-};
+        return (
+          <li key={video.title}>
+            <VideoCard
+              videoTitle={video.title}
+              videoURL={video.url}
+              categoryColor={category.color}
+            />
+          </li>
+        );
+      })}
+    </Slider>
+  </VideoCardGroupContainer>
+);
 
 export default Carousel;

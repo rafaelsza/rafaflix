@@ -5,7 +5,7 @@ interface ContainerProps {
   isFocused: boolean;
 }
 
-/* eslint-disable */
+/* eslint-disable indent */
 export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
@@ -25,6 +25,7 @@ export const Container = styled.div<ContainerProps>`
     height: 40px;
     width: 300px;
     outline: none;
+    padding: 0 10px;
 
     border-radius: 5px;
     border: 1px solid var(--blackLighter);

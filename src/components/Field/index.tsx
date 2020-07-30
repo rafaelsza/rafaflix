@@ -16,9 +16,7 @@ export interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Field: React.FC<FieldProps> = ({ label, name, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-
   const [focused, setFocused] = useState(false);
-
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
   const handleInputFocus = useCallback(() => {
@@ -35,9 +33,10 @@ const Field: React.FC<FieldProps> = ({ label, name, ...rest }) => {
 
   return (
     <Container isErrored={!!error} isFocused={focused}>
-      <label>{label}</label>
+      <label htmlFor={`id_${name}`}>{label}</label>
       {error && <span>{error}</span>}
       <input
+        id={`id_${name}`}
         ref={inputRef}
         name={name}
         onFocus={handleInputFocus}

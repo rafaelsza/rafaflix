@@ -4,7 +4,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
-import initialData from '../../data/initial_data.json';
+import data from '../../data/data.json';
 
 import Template from '../Template';
 import Field from '../../components/Field';
@@ -27,7 +27,7 @@ const RegistrationVideo: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const navigation = useHistory();
 
-  const handleSubmit = useCallback(async (data: FormProps) => {
+  const handleSubmit = useCallback(async (formData: FormProps) => {
     try {
       formRef.current?.setErrors({});
 
@@ -39,12 +39,12 @@ const RegistrationVideo: React.FC = () => {
         category: Yup.string().required('Escolha a categoria'),
       });
 
-      await schema.validate(data, {
+      await schema.validate(formData, {
         abortEarly: false,
       });
 
       alert(
-        `Title: ${data.title} | URL: ${data.url} | Category: ${data.category}`,
+        `Title: ${formData.title} | URL: ${formData.url} | Category: ${formData.category}`,
       );
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
@@ -73,9 +73,9 @@ const RegistrationVideo: React.FC = () => {
           <Select
             label="Categoria:"
             name="category"
-            options={initialData.categories.map(category => ({
-              value: category.title,
-              label: category.title,
+            options={data.categories.map(category => ({
+              value: category.name,
+              label: category.name,
             }))}
           />
           <ContainerButton>
