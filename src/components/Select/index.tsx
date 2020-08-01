@@ -20,6 +20,7 @@ const Field: React.FC<Props> = ({ label, name, ...rest }) => {
     registerField({
       name: fieldName,
       ref: selectRef.current,
+      /* eslint-disable-next-line */
       getValue: (ref: any) => {
         if (rest.isMulti) {
           if (!ref.state.value) {
@@ -37,15 +38,16 @@ const Field: React.FC<Props> = ({ label, name, ...rest }) => {
 
   return (
     <Container>
-      <label>{label}</label>
+      <label htmlFor={`id_${name}`}>{label}</label>
       {error && <span>{error}</span>}
       <ReactSelect
         ref={selectRef}
+        id={`id_${name}`}
         name={name}
         defaultValue={defaultValue}
         placeholder="Selecione..."
         styles={{
-          control: (provided, state) => ({
+          control: (provided, _) => ({
             ...provided,
             height: 42,
             border: error ? '1px solid red' : '1px solid var(--blackLighter)',

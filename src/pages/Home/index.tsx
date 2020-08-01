@@ -1,14 +1,16 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import data from '../../data/data.json';
-
 import Template from '../Template';
 import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
 
+import { useCategory } from '../../hooks/categories';
+
 const Home: React.FC = () => {
   const navigation = useHistory();
+  const { categories } = useCategory();
+
   return (
     <Template
       button={{
@@ -16,14 +18,16 @@ const Home: React.FC = () => {
         onClick: () => navigation.push('/video/registration'),
       }}
     >
-      <BannerMain
-        videoTitle={data.categories[0].videos[0].title}
-        url={data.categories[0].videos[0].url}
-      />
+      {categories[0]?.videos.length > 0 && (
+        <BannerMain
+          videoTitle={categories[0]?.videos[0].title}
+          url={categories[0]?.videos[0].url}
+        />
+      )}
 
-      {data.categories.map(category => (
+      {categories.map(category => (
         <Carousel
-          key={data.categories.indexOf(category)}
+          key={categories.indexOf(category)}
           ignoreFirstVideo={false}
           category={category}
         />

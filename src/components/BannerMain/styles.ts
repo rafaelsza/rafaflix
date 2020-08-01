@@ -4,6 +4,8 @@ interface BannerMainContainerProps {
   backgroundImage: string;
 }
 
+export const Container = styled.div``;
+
 export const ContentAreaContainer = styled.section`
   margin-left: 5%;
   margin-right: 5%;

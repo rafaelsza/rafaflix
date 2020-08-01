@@ -4,32 +4,25 @@ import { VideoCardGroupContainer, Title } from './styles';
 
 import VideoCard from './components/VideoCard';
 import Slider from '../Slider';
+import { Category } from '../../hooks/categories';
 
 interface CarouselProps {
   ignoreFirstVideo: boolean;
-  category: {
-    name: string;
-    description: string;
-    color: string;
-    videos: Array<{
-      title: string;
-      url: string;
-    }>;
-  };
+  category: Category;
 }
 
 const Carousel: React.FC<CarouselProps> = ({ ignoreFirstVideo, category }) => (
   <VideoCardGroupContainer>
-    {category.name && (
+    {category.title && (
       <>
         <Title style={{ backgroundColor: category.color || 'red' }}>
-          {category.name}
+          {category.title}
         </Title>
         {/* {category.description} */}
       </>
     )}
     <Slider>
-      {category.videos.map((video, index) => {
+      {category.videos?.map((video, index) => {
         if (ignoreFirstVideo && index === 0) {
           return null;
         }

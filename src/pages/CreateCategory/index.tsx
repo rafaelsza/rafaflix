@@ -9,12 +9,7 @@ import Field from '../../components/Field';
 import Button from '../../components/Button';
 
 import { Container, ContainerButton } from './styles';
-
-interface FormProps {
-  name: string;
-  description: string;
-  color: string;
-}
+import { Category, useCategory } from '../../hooks/categories';
 
 interface FormErrors {
   [key: string]: string;
@@ -23,36 +18,40 @@ interface FormErrors {
 const CreateCategory: React.FC = () => {
   const navigation = useHistory();
   const formRef = useRef<FormHandles>(null);
+  const { addCategory } = useCategory();
 
-  const handleSubmit = useCallback(async (formData: FormProps) => {
-    try {
-      formRef.current?.setErrors({});
+  const handleSubmit = useCallback(
+    async (formData: Omit<Category, 'id' | 'videos'>) => {
+      try {
+        formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        name: Yup.string().required(
-          'É preciso informar um nome para a categoria',
-        ),
-      });
-
-      await schema.validate(formData, {
-        abortEarly: false,
-      });
-
-      alert(
-        `Name: ${formData.name} | Description: ${formData.description} | Color: ${formData.color}`,
-      );
-    } catch (error) {
-      if (error instanceof Yup.ValidationError) {
-        const validationErrors: FormErrors = {};
-
-        error.inner.forEach(err => {
-          validationErrors[err.path] = err.message;
+        const schema = Yup.object().shape({
+          title: Yup.string().required(
+            'É preciso informar um nome para a categoria',
+          ),
         });
 
-        formRef.current?.setErrors(validationErrors);
+        await schema.validate(formData, {
+          abortEarly: false,
+        });
+
+        addCategory(formData);
+
+        navigation.push('/');
+      } catch (error) {
+        if (error instanceof Yup.ValidationError) {
+          const validationErrors: FormErrors = {};
+
+          error.inner.forEach(err => {
+            validationErrors[err.path] = err.message;
+          });
+
+          formRef.current?.setErrors(validationErrors);
+        }
       }
-    }
-  }, []);
+    },
+    [navigation, addCategory],
+  );
 
   return (
     <Template
@@ -63,7 +62,7 @@ const CreateCategory: React.FC = () => {
     >
       <Container>
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Field label="Nome da categoria:" type="text" name="name" />
+          <Field label="Nome da categoria:" type="text" name="title" />
           <Field label="Descrição:" type="text" name="description" />
           <Field label="Cor:" type="color" name="color" />
           <ContainerButton>

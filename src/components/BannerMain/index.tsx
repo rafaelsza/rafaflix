@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import VideoIframeResponsive from './components/VideoIframeResponsive';
 import {
+  Container,
   BannerMainContainer,
   ContentAreaContainer,
   Item,
@@ -20,30 +21,38 @@ const BannerMain: React.FC<BannerMainProps> = ({
   videoDescription,
   url,
 }) => {
-  function getYouTubeId(youtubeURL: string) {
-    return youtubeURL.replace(
-      /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/,
-      '$7',
-    );
-  }
+  const [youTubeID, setYouTubeID] = useState('');
 
-  const youTubeID = getYouTubeId(url);
-  const bgUrl = `https://img.youtube.com/vi/${youTubeID}/maxresdefault.jpg`;
+  useEffect(() => {
+    url &&
+      setYouTubeID(
+        url.replace(
+          /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/,
+          '$7',
+        ),
+      );
+  }, [url]);
 
   return (
-    <BannerMainContainer backgroundImage={bgUrl}>
-      <ContentAreaContainer>
-        <Item>
-          <Title>{videoTitle}</Title>
-          <Description>{videoDescription}</Description>
-        </Item>
+    <Container>
+      {youTubeID && (
+        <BannerMainContainer
+          backgroundImage={`https://img.youtube.com/vi/${youTubeID}/maxresdefault.jpg`}
+        >
+          <ContentAreaContainer>
+            <Item>
+              <Title>{videoTitle}</Title>
+              <Description>{videoDescription}</Description>
+            </Item>
 
-        <Item>
-          <VideoIframeResponsive youtubeID={youTubeID} />
-          <WatchButton>Assistir</WatchButton>
-        </Item>
-      </ContentAreaContainer>
-    </BannerMainContainer>
+            <Item>
+              <VideoIframeResponsive youtubeID={youTubeID} />
+              <WatchButton>Assistir</WatchButton>
+            </Item>
+          </ContentAreaContainer>
+        </BannerMainContainer>
+      )}
+    </Container>
   );
 };
 
